@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'users_controller/show'
-
-  get 'welcome/index'
-
   devise_for :users
-
+  resources :users, only: [:show]
+  get 'welcome/index'
   root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
