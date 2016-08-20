@@ -1,3 +1,8 @@
-<h1> Welcome </h1>
-<p> Information </p>
-<%= @user.email %>
+<h1> Welcome to <%= @user.email %>'s Profile.</h1>
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <%= item.name %>
+    </li>
+  <% end %>
+</ul>
