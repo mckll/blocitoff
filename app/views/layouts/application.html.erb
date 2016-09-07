@@ -8,15 +8,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div>
+  <div class="container">
+    <ul class="nav nav-tabs">
     <% if current_user %>
       <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "Sign in", new_user_session_path %>
       <%= link_to "Sign up", new_user_registration_path %>
     <% end %>
+  </ul>
+  <div class="flash">
+  <% if flash[:success] %>
+       <div class="alert alert-success">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:success] %>
+       </div>
+     <% elsif flash.now[:error] %>
+       <div class="alert alert-danger">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash.now[:error] %>
+       </div>
+     <% elsif flash[:error] %>
+       <div class="alert alert-warning">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:error] %>
+       </div>
+     <% end %>
+   </div>
+   <%= yield %>
   </div>
-<%= yield %>
-
 </body>
 </html>

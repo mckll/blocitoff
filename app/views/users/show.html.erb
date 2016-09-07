@@ -1,8 +1,16 @@
 <h1> Welcome to <%= @user.email %>'s Profile.</h1>
 <ul>
   <% @items.each do |item| %>
-    <li>
+    <li id="item-<%= item.id %>">
       <%= item.name %>
+      <%= link_to "", user_item_path(@user.id, item.id), method: :delete, class: 'glyphicon glyphicon-ok' %>
     </li>
   <% end %>
 </ul>
+<%= form_for [ current_user, Item.new ] do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter Item Name" %>
+  </div>
+    <%= f.submit "Save", class: 'btn btn-success' %>
+<% end %>

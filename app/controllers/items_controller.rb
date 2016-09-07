@@ -13,14 +13,21 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = current_user.items.find(params[:id])
+
     if @item.destroy
       flash[:success] = "#{@item.name} was completed."
     else
       flash[:error] = "Error: Item not deleted. Please try again."
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
-  respond_to do |format|
-    format.html
-    format.js
+  private
+  def item_params
+    params.require(:item).permit(:name)
   end
 end
