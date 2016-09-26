@@ -4,7 +4,7 @@
     <li id="item-<%= item.id %>">
       <%= item.name %>
       <%= link_to "", user_item_path(@user.id, item.id), method: :delete, remote: true, class: 'glyphicon glyphicon-ok' %>
-      <%= distance_of_time_in_words(Time.now, item.created_at) %>
+      <%= distance_of_time_in_words(Time.now, item.created_at + 7.days) %>
     </li>
   <% end %>
 </ul>
